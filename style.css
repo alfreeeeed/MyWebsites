@@ -1,0 +1,138 @@
+.title{
+  margin: 0pt;
+	padding: 20pt;
+	background-color: #8D91C7;
+}
+h1{
+    font-family: 'Bebas Neue';
+	text-align: center;
+	font-size: 72px;
+	color: #F1FFFA;
+    font-width: 400;
+}
+body{
+    margin: 0pt;
+	background-color: #2E2E33;
+}
+txt{
+	font-family: 'Roboto Slab';
+    font-weight: 400;
+    color: #F1FFFA;
+    font-size: 24px;
+    line-height: 1.2;
+}
+txtb{
+    text-align: center;
+    font-family: 'Roboto Slab';
+    color: #F1FFFA;
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+.bttn{
+  display: block;
+  text-align: center;
+  margin: 30px;
+  padding: 50px;
+  background-color: #3D4266;
+  color: #F1FFFA;
+  text-decoration: none;
+  font-family: 'Bebas Neue';
+  font-size: 38px;
+}
+.bttn:hover{
+  color: #8D91C7;
+  animation-name: zoom;
+  animation-duration: 0.5s;
+}
+.bottom{
+  margin-top: 50px;
+  padding: 100px 10px 10px ;
+  background-color: #8D91C7;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+.points{
+    border-radius: 10pt;
+    border-color: #3D4266;
+    border-style: solid;
+    border-width: 10pt;
+    padding: 40pt;
+    margin: 80pt;
+    max-width: 600px;
+}
+.points:hover{
+  animation-name: zoom;
+  animation-duration: 0.5s;
+}
+@keyframes zoom {
+  from, to{
+    scale: 1;
+    background-color: none;
+  }
+  10%{
+    background-color: #3D4266;
+  }
+  50%{
+    scale:1.2;
+  }
+  70%{
+    background-color: #3D4266;
+  }
+}
+#btnControl {
+    display: none;
+}
+#btnControl:checked + label {
+  scale: 5;
+  z-index: 3;
+  background-color: #2E2E33;
+}
+.img{
+    width: 100%;
+    height: auto;
+}
+.t{
+    color: #F1FFFA;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Open Sans';
+}
+.web{
+    margin: 20px 10px;
+}
+.web2{
+  display:flex;
+}
+.atxt{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+li{
+  margin: 18px 0px;
+}
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('fonts/robotoslab-variablefont_wght-webfont.woff2') format('woff2'),
+         url('fonts/robotoslab-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('fonts/bebasneue-regular-webfont.woff2') format('woff2'),
+         url('fonts/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/opensans-italic-variablefont_wdthwght-webfont.woff2') format('woff2'),
+         url('fonts/opensans-italic-variablefont_wdthwght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
