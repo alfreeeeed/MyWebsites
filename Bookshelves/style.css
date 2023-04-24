@@ -1,0 +1,23 @@
+#all{
+  width: 100%;
+  background-color: #3D4266;
+  min-height: 10pt;
+  padding: 20pt;
+}
+.oneshelv{
+  padding: 5pt;
+  margin: 10pt;
+  max-width: 80%;
+  width: 250pt;
+  background-color: #8D91C7;
+  aspect-ratio: 3/5;
+  flex-wrap: wrap;
+  display: wrap;
+}
+.book{
+  flex-wrap: wrap;
+  display: wrap;
+  height: 15%;
+  aspect-ratio: 9/16;
+  background-color: green;
+}
