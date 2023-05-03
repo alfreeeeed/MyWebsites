@@ -10,11 +10,11 @@ for (let i = 0; i < 50; i ++) {
 */
 var max_count = 10;
 var count = 0;
-function neeew(){
+function neeew(shelv){
   if(count<max_count){
     let div = document.createElement('div');
     div.className = 'book';
-    div.id = "b1_"+[count];
+    div.id = [shelv]+[count];
     count++;
     let element = document.getElementById("shelv1");
     let bttn = document.getElementById("bttn1");
@@ -25,7 +25,7 @@ function neeew(){
     bttn.remove()
     let div = document.createElement('div');
     div.className = 'book';
-    div.id = "b1_"+[count];
+    div.id = [shelv]+[count];
     let element = document.getElementById("shelv1");
     element.appendChild(div);
     count= 0;
