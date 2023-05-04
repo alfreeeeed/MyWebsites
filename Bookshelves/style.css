@@ -33,3 +33,6 @@
 .newshelv:hover{
   background-color: blue;
 }
+.wood-border {
+   border-image: repeating-linear-gradient(40deg, hsl(30, 50%, 15%), hsl(20, 50%, 30%), hsl(25, 40%, 20%) 8px) 60;
+}
