@@ -2,6 +2,8 @@
   background-color: #3D4266;
   min-height: 10pt;
   padding: 20pt;
+  flex-wrap: wrap;
+  display: flex;
 }
 .oneshelv{
   padding: 1%;
@@ -20,5 +22,14 @@
   background-color: green;
 }
 .newbook{
+  background-color: blue;
+}
+.newbook:hover{
+  background-color: red;
+}
+.newshelv{
+  background-color: unset;
+}
+.newshelv:hover{
   background-color: blue;
 }
