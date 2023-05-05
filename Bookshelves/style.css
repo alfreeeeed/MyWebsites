@@ -1,19 +1,15 @@
-#all{
-  background-color: #3D4266;
-  min-height: 10pt;
-  padding: 20pt;
-  flex-wrap: wrap;
-  display: flex;
-}
 .oneshelv{
   padding: 1%;
   margin: 10pt;
   max-width: 80%;
   width: 250pt;
-  background-color: #8D91C7;
+  background-color: #4f1818;
   aspect-ratio: 9/8;
   flex-wrap: wrap;
   display: flex;
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.1),
+  rgba(255,255,255, 0.1) 1px, transparent 1px, transparent 6px);
+  background-size: 4px 4px;
 }
 .book{
   flex: 1 0 15%;
@@ -28,11 +24,23 @@
   background-color: red;
 }
 .newshelv{
+  background-image: none;
   background-color: unset;
 }
 .newshelv:hover{
   background-color: blue;
 }
 .wood-border {
-   border-image: repeating-linear-gradient(40deg, hsl(30, 50%, 15%), hsl(20, 50%, 30%), hsl(25, 40%, 20%) 8px) 60;
+  border-image: repeating-linear-gradient(40deg, hsl(30, 50%, 15%), hsl(20, 50%, 30%), hsl(25, 40%, 20%) 8px) 60;
+}
+#all{
+  min-height: 10pt;
+  padding: 20pt;
+  flex-wrap: wrap;
+  display: flex;
+}
+body{
+  background-color: #67686b;
+  background-image: repeating-linear-gradient(36deg, rgba(255,255,255, 0.1),
+   rgba(255,255,255, 0.1) 1px, transparent 0px, transparent 2px);
 }
