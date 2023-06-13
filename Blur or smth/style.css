@@ -1,0 +1,12 @@
+.tst{
+ max-width: 50%;
+ background-color: #5e6342;
+ padding: 20pt;
+ border-radius: 20pt;
+ margin: 50pt;
+}
+body{
+  color: #daa066;
+  background-image: url("noise.png");
+  background-color: #293121;
+}
