@@ -4,9 +4,32 @@
  padding: 20pt;
  border-radius: 20pt;
  margin: 50pt;
+ background-size: 100pt;
 }
 body{
   color: #daa066;
   background-image: url("noise.png");
   background-color: #293121;
+  background-size: 50pt;
 }
+.tst:hover{
+  animation-name: tst;
+  animation-duration: 10s;
+  }
+  @keyframes tst {
+    0%{
+      background-position: 1pt 1pt;
+      background-image: url("noise.png");
+      padding: 20pt;
+      margin: 50pt;
+    }
+    50%{
+      padding: 60pt;
+      margin: 10pt;
+    }
+    100%{
+      background-position: 100pt 100pt;
+      padding: 20pt;
+      margin: 50pt;
+    }
+  }
