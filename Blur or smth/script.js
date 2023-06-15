@@ -40,6 +40,7 @@ function applyBlur(imagePath, kernelSize, blurType) {
 
       // Save the blurred image data
       blurredImageData = canvas.toDataURL();
+      document.getElementById("blurredImage").src = blurredImageData;
     })
     .catch(error => {
       console.error('Error loading the image:', error);
