@@ -2,6 +2,8 @@ function test (){
   applyBlur("imgs/icon.png", 10, "box");
   console.log("bttn worked");
 }
+let blurredImageData; // Variable to store the blurred image data
+
 function applyBlur(imagePath, kernelSize, blurType) {
   fetch(imagePath)
     .then(response => response.blob())
@@ -36,37 +38,14 @@ function applyBlur(imagePath, kernelSize, blurType) {
       imageData.data.set(pixels);
       context.putImageData(imageData, 0, 0);
 
-      // Create a blurred image element
-      const blurredImage = new Image();
-      blurredImage.src = canvas.toDataURL();
-      blurredImage.setAttribute('box_blur', ''); // Set the "box_blur" tag
-
-      // Create a canvas to save the blurred image
-      const saveCanvas = document.createElement('canvas');
-      saveCanvas.width = canvas.width;
-      saveCanvas.height = canvas.height;
-      const saveContext = saveCanvas.getContext('2d');
-      saveContext.drawImage(blurredImage, 0, 0);
-
-      // Convert the blurred image to a data URL
-      const dataUrl = saveCanvas.toDataURL();
-
-      // Extract the filename from the imagePath
-      const filename = imagePath.substring(imagePath.lastIndexOf('/') + 1);
-
-      // Generate the modified filename with kernel size and blur type
-      const modifiedFilename = `boxblur_${filename.replace(/\.[^/.]+$/, '')}_${kernelSize}_${blurType}.png`;
-
-      // Save the blurred image to the specified folder
-      const link = document.createElement('a');
-      link.href = dataUrl;
-      link.download = `../imgs/blurred/${modifiedFilename}`;
-      link.click();
+      // Save the blurred image data
+      blurredImageData = canvas.toDataURL();
     })
     .catch(error => {
       console.error('Error loading the image:', error);
     });
 }
+
 
 function applyBoxBlurAlgorithm(pixels, width, height, kernelSize) {
   const side = Math.floor(kernelSize / 2);
