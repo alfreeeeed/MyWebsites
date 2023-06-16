@@ -1,7 +1,8 @@
 function test (){
-  applyBlur("imgs/icon.png", 10, "box");
+  applyBlur("imgs/icon.png", 10, "bokeh");
   console.log("bttn worked");
 }
+
 let blurredImageData; // Variable to store the blurred image data
 
 function applyBlur(imagePath, kernelSize, blurType) {
@@ -22,6 +23,7 @@ function applyBlur(imagePath, kernelSize, blurType) {
 
       // Get the pixel data from the canvas
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      console.log(imageData); // Debug console log
       const pixels = imageData.data;
 
       // Apply the specified blur algorithm
@@ -46,6 +48,7 @@ function applyBlur(imagePath, kernelSize, blurType) {
       console.error('Error loading the image:', error);
     });
 }
+
 
 
 function applyBoxBlurAlgorithm(pixels, width, height, kernelSize) {
@@ -81,61 +84,70 @@ function applyBoxBlurAlgorithm(pixels, width, height, kernelSize) {
 }
 
 function applyGaussianBlurAlgorithm(pixels, width, height, kernelSize) {
-  const side = Math.floor(kernelSize / 2);
-  const kernel = generateGaussianKernel(kernelSize);
-  const length = pixels.length;
-  const blurredPixels = new Uint8ClampedArray(length);
+  const radius = Math.floor(kernelSize / 2);
+  const sigma = radius / 3; // Adjust the sigma value as desired
 
-  for (let i = 0; i < length; i += 4) {
-    const averageRGBA = [0, 0, 0, 0];
+  const kernel = generateGaussianKernel(kernelSize, sigma);
 
-    for (let x = -side; x <= side; x++) {
-      for (let y = -side; y <= side; y++) {
-        const pixelIndex = i + (x * 4) + (y * width * 4);
-        const kernelIndex = (x + side) * kernelSize + (y + side);
+  const tempData = new Uint8ClampedArray(pixels.length);
 
-        if (pixelIndex >= 0 && pixelIndex < length) {
-          averageRGBA[0] += pixels[pixelIndex] * kernel[kernelIndex];
-          averageRGBA[1] += pixels[pixelIndex + 1] * kernel[kernelIndex];
-          averageRGBA[2] += pixels[pixelIndex + 2] * kernel[kernelIndex];
-          averageRGBA[3] += pixels[pixelIndex + 3] * kernel[kernelIndex];
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let r = 0, g = 0, b = 0, a = 0;
+      let weightSum = 0;
+
+      for (let ky = -radius; ky <= radius; ky++) {
+        for (let kx = -radius; kx <= radius; kx++) {
+          const weight = kernel[ky + radius][kx + radius];
+          const pixelOffset = ((y + ky) * width + (x + kx)) * 4;
+
+          r += pixels[pixelOffset] * weight;
+          g += pixels[pixelOffset + 1] * weight;
+          b += pixels[pixelOffset + 2] * weight;
+          a += pixels[pixelOffset + 3] * weight;
+          weightSum += weight;
         }
       }
-    }
 
-    blurredPixels[i] = averageRGBA[0];
-    blurredPixels[i + 1] = averageRGBA[1];
-    blurredPixels[i + 2] = averageRGBA[2];
-    blurredPixels[i + 3] = averageRGBA[3];
+      const pixelOffset = (y * width + x) * 4;
+
+      tempData[pixelOffset] = r / weightSum;
+      tempData[pixelOffset + 1] = g / weightSum;
+      tempData[pixelOffset + 2] = b / weightSum;
+      tempData[pixelOffset + 3] = a / weightSum;
+    }
   }
 
-  pixels.set(blurredPixels);
+  pixels.set(tempData);
 }
 
-function generateGaussianKernel(kernelSize) {
+function generateGaussianKernel(kernelSize, sigma) {
   const kernel = [];
-  const sigma = kernelSize / 6;
-  const mean = Math.floor(kernelSize / 2);
+  const radius = Math.floor(kernelSize / 2);
+
   let sum = 0;
 
-  for (let x = 0; x < kernelSize; x++) {
-    for (let y = 0; y < kernelSize; y++) {
-      const value = gaussianFunction(x, y, mean, mean, sigma);
-      kernel.push(value);
-      sum += value;
+  for (let y = -radius; y <= radius; y++) {
+    const row = [];
+    for (let x = -radius; x <= radius; x++) {
+      const weight = gaussianFunction(x, y, sigma);
+      row.push(weight);
+      sum += weight;
     }
+    kernel.push(row);
   }
 
   // Normalize the kernel
-  for (let i = 0; i < kernel.length; i++) {
-    kernel[i] /= sum;
+  for (let y = 0; y < kernelSize; y++) {
+    for (let x = 0; x < kernelSize; x++) {
+      kernel[y][x] /= sum;
+    }
   }
 
   return kernel;
 }
 
-function gaussianFunction(x, y, meanX, meanY, sigma) {
-  const exponent = -((x - meanX) ** 2 + (y - meanY) ** 2) / (2 * sigma ** 2);
-  const coefficient = 1 / (2 * Math.PI * sigma ** 2);
-  return coefficient * Math.exp(exponent);
+function gaussianFunction(x, y, sigma) {
+  const exponent = -(x * x + y * y) / (2 * sigma * sigma);
+  return Math.exp(exponent) / (2 * Math.PI * sigma * sigma);
 }
