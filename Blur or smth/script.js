@@ -1,11 +1,10 @@
 function test (){
-  applyBlur("imgs/icon.png", 10, "bokeh");
   console.log("bttn worked");
 }
 
 let blurredImageData; // Variable to store the blurred image data
 
-function applyBlur(imagePath, kernelSize, blurType) {
+function applyBlur(imagePath, kernelSize, blurType, outputId) {
   fetch(imagePath)
     .then(response => response.blob())
     .then(blob => createImageBitmap(blob))
@@ -23,7 +22,6 @@ function applyBlur(imagePath, kernelSize, blurType) {
 
       // Get the pixel data from the canvas
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      console.log(imageData); // Debug console log
       const pixels = imageData.data;
 
       // Apply the specified blur algorithm
@@ -41,8 +39,16 @@ function applyBlur(imagePath, kernelSize, blurType) {
       context.putImageData(imageData, 0, 0);
 
       // Save the blurred image data
-      blurredImageData = canvas.toDataURL();
-      document.getElementById("blurredImage").src = blurredImageData;
+      const blurredImageData = canvas.toDataURL();
+
+      // Set the source and ID of the final image tag
+      const blurredImage = document.createElement('img');
+      blurredImage.src = blurredImageData;
+      blurredImage.id = outputId;
+
+      // Append the blurred image to a container or replace an existing image
+      const container = document.getElementById(outputId);
+      container.parentNode.replaceChild(blurredImage, container);
     })
     .catch(error => {
       console.error('Error loading the image:', error);
@@ -151,3 +157,26 @@ function gaussianFunction(x, y, sigma) {
   const exponent = -(x * x + y * y) / (2 * sigma * sigma);
   return Math.exp(exponent) / (2 * Math.PI * sigma * sigma);
 }
+
+const slider = document.getElementById('slider');
+const sliderValue = document.getElementById('sliderValue');
+let timeoutId;
+
+slider.addEventListener('input', function() {
+  const value = parseInt(slider.value);
+
+  // Update the value displayed on the right side of the slider
+  if (value === 0) {
+    sliderValue.textContent = 'Off';
+  } else {
+    sliderValue.textContent = value;
+  }
+
+  // Clear the previous timeout if it exists
+  clearTimeout(timeoutId);
+
+  // Run your function after a delay of 1 second
+  timeoutId = setTimeout(function() {
+    applyBlur("imgs/icon.png", value, "box", "blurredImage");
+  }, 200);
+});

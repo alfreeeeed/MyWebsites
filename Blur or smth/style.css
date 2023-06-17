@@ -33,3 +33,40 @@ body{
       margin: 50pt;
     }
   }
+  #sliderValue {
+      margin-left: 10px;
+}
+
+.loader {
+  width: 30pt;
+  height: 30pt;
+  border: 10pt solid #b8b8b8;
+  border-top-color: #6e0969;
+  border-radius: 50%;
+  animation: spin 500ms linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.image {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blurredImage {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
