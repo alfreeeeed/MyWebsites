@@ -1,31 +1,112 @@
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stuff</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="icon" type="image/png" href="../imgs/icon2.png"/>
+	<meta name= "viewport" content= "width=device-width, initial-scale=1.0">
+	<title>Types of Blur</title>
+	<link rel= "stylesheet" href= "style.css">
+	<link rel= "icon" type= "image/png" href= "../imgs/icon2.png"/>
+	<style>
+		@import url(
+			'https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,700;1,700&family=Roboto:ital,wght@0,100;0,300;0,500;1,700&display=swap'
+			);
+	</style>
 </head>
 <body>
-	<div class="image">
-		<img id="blurredImage" class="blurredImage" alt="Box Blurred Image" src="imgs/icon.png">
-		<div class="loader"></div>
+	<div class= "title" id="mainTitle">Different Types of Blur</div>
+	<div class= "allCategorys">
+		<div class= oneHalf>
+			<div class= "category" id= "boxBlur">
+				<div class= "title">Box Blur</div>
+				<div class= "text">
+					<p>
+	 					Box blur is a commonly used image filtering technique that is used to
+						reduce image noise or to create a smoother appearance by averaging the
+						pixel values within a given neighborhood. It is called a "box blur"
+						 because it uses a square-shaped filter kernel to perform the blurring
+						 operation.
+ 					</p>
+ 					<p>
+	 					The algorithm starts by traversing each pixel of the image and
+						creating a square neighborhood or kernel around it. The size of the
+						kernel, often referred to as the blur radius, determines how many
+						neighboring pixels are included in the averaging process.
+ 					</p>
+ 					<p>
+	 					The algorithm calculates the average intensity value of all the
+						pixels within the kernel and assigns this average value to the
+						current pixel, effectively replacing its original intensity value.
+						This process is repeated for all pixels in the image, gradually
+						spreading out the pixel intensities and resulting in a blurred effect.
+ 					</p>
+ 					<p>
+	 					Box blur can be applied to color images as well by performing
+						the blur operation independently on each color channel (e.g., red, green,
+						and blue) and recombining them to form the final blurred image.
+ 					</p>
+ 					<p>
+	 					It's worth noting that box blur is a simple and fast blurring
+						technique, but it may not produce the highest quality results compared
+						to more advanced blurring algorithms such as Gaussian blur. However,
+						it is widely used and often sufficient for various image processing tasks.
+ 					</p>
+				</div>
+			</div>
+		</div>
+		<div class= oneHalf>
+			<div class= "category" id= "boxBlur">
+				<div class= "title">Gaussian Blur</div>
+				<div class= "text">
+					<p>
+	 					Gaussian blur is a widely used image processing technique that helps
+						 to reduce noise and smooth out images. It is named after the Gaussian
+						  function, which is a mathematical function that describes a bell-shaped
+							curve.
+ 					</p>
+ 					<p>
+	 					The basic idea behind Gaussian blur is to average the pixel values
+						of an image with the surrounding pixels, giving more weight to the
+						pixels closer to the center and less weight to those farther away.
+						This weighted averaging process results in a blurring effect that
+						reduces the high-frequency details in the image.
+ 					</p>
+ 					<p>
+	 					The blurring effect is determined by the size of the blur kernel,
+						which is a matrix or a convolutional filter applied to the image.
+						The size of the kernel determines the extent of the blurring effect.
+						A larger kernel will produce a more pronounced blur, while a smaller
+						kernel will result in a less noticeable blur.
+ 					</p>
+ 					<p>
+	 					The weights assigned to the pixels in the kernel follow a Gaussian
+						distribution, meaning that the central pixel has the highest weight,
+						and the weights decrease symmetrically as you move away from the
+						center. This weight distribution creates a smooth transition between
+						pixels, resulting in a natural-looking blur.
+ 					</p>
+ 					<p>
+	 					The Gaussian blur algorithm applies the kernel to each pixel in the
+						image by convolving the kernel with the pixel values. The convolution
+						process involves multiplying the corresponding kernel weights with
+						the pixel values and summing them up. The resulting sum is then
+						divided by the total weight of the kernel to obtain the final blurred
+						pixel value.
+ 					</p>
+ 					<p>
+	 					Gaussian blur is commonly used in various image processing
+						applications, such as image smoothing, noise reduction, and creating
+						special effects. It is especially useful for reducing the impact of
+						random noise or imperfections in an image, resulting in a more
+						visually pleasing and aesthetically appealing output.
+ 					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<input type="range" min="0" max="100" value="0" id="slider">
-  <span id="sliderValue">Off</span>
-  <div class = "tst" onclick="test()">
-    Dallas (/ˈdæləs/) is the third-largest city in Texas and the largest
-    city in the Dallas–Fort Worth metroplex, the fourth-largest metropolitan
-    area in the United States at 7.5 million people. It is the largest
-    city in and seat of Dallas County with portions extending into Collin,
-    Denton, Kaufman, and Rockwall counties. With a 2020 census population of
-    1,304,379, it is the ninth-most populous city in the U.S. and the
-    third-largest city in Texas after Houston and San Antonio. Located
-    in the North Texas region, the city of Dallas is the main core of
-    the largest metropolitan area in the Southern United States and the
-    largest inland metropolitan area in the U.S. that lacks any navigable
-    link to the sea.
+	<img id= "boxBlurredImage" alt= "Box Blurred Image" src= "imgs/noise/noiseImg1.jpg">
+	<div class="slider-container">
+     <input type= "range" min= "0" max= "100" value= "0" id= "boxSlider">
+     <span class= "slider-value" id= "boxSliderValue">Off</span>
   </div>
-	<script src="script.js"></script>
+	<script src= "script.js"></script>
 </body>
 </html>

@@ -158,25 +158,26 @@ function gaussianFunction(x, y, sigma) {
   return Math.exp(exponent) / (2 * Math.PI * sigma * sigma);
 }
 
-const slider = document.getElementById('slider');
-const sliderValue = document.getElementById('sliderValue');
-let timeoutId;
+function setupSlider(sliderId, valueId, srcImg, outputId, blurType) {
+  const slider = document.getElementById(sliderId);
+  const sliderValue = document.getElementById(valueId);
+  let timeoutId;
 
-slider.addEventListener('input', function() {
-  const value = parseInt(slider.value);
+  slider.addEventListener('input', function() {
+    const value = parseInt(slider.value);
 
-  // Update the value displayed on the right side of the slider
-  if (value === 0) {
-    sliderValue.textContent = 'Off';
-  } else {
-    sliderValue.textContent = value;
-  }
+    if (value === 0) {
+      sliderValue.textContent = 'Off';
+    } else {
+      sliderValue.textContent = value;
+    }
 
-  // Clear the previous timeout if it exists
-  clearTimeout(timeoutId);
+    clearTimeout(timeoutId);
 
-  // Run your function after a delay of 1 second
-  timeoutId = setTimeout(function() {
-    applyBlur("imgs/icon.png", value, "box", "blurredImage");
-  }, 200);
-});
+    timeoutId = setTimeout(function() {
+      applyBlur(srcImg, value, blurType, outputId);
+    }, 500);
+  });
+}
+
+setupSlider("boxSlider", "boxSliderValue", "imgs/noise/noiseImg1.jpg", "boxBlurredImage" , "box");
