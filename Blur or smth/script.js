@@ -41,10 +41,14 @@ function applyBlur(imagePath, kernelSize, blurType, outputId) {
       // Save the blurred image data
       const blurredImageData = canvas.toDataURL();
 
-      // Set the source and ID of the final image tag
+      // Set the source, the size and ID of the final image tag
       const blurredImage = document.createElement('img');
+      const originalImage = document.getElementById(outputId);
       blurredImage.src = blurredImageData;
+      blurredImage.classList.add(originalImage.classList.value)
+      console.log(blurredImage.classList);
       blurredImage.id = outputId;
+
 
       // Append the blurred image to a container or replace an existing image
       const container = document.getElementById(outputId);
@@ -180,4 +184,5 @@ function setupSlider(sliderId, valueId, srcImg, outputId, blurType) {
   });
 }
 
-setupSlider("boxSlider", "boxSliderValue", "imgs/noise/noiseImg1.jpg", "boxBlurredImage" , "box");
+setupSlider("boxSlider_1", "boxSliderValue_1", "imgs/icon.png", "boxBlurredImage_1" , "box");
+setupSlider("boxSlider_2", "boxSliderValue_2", "imgs/face1.png", "boxBlurredImage_2" , "box");

@@ -14,8 +14,8 @@
 <body>
 	<div class= "title" id="mainTitle">Different Types of Blur</div>
 	<div class= "allCategorys">
-		<div class= oneHalf>
-			<div class= "category" id= "boxBlur">
+		<div class= "oneHalf">
+			<div class= "category">
 				<div class= "title">Box Blur</div>
 				<div class= "text">
 					<p>
@@ -51,9 +51,25 @@
  					</p>
 				</div>
 			</div>
+			<div class= "images">
+				<div class= "imageContainer">
+					<img class= "blurredImage" id= "boxBlurredImage_1" alt= "Box Blurred Image" src= "imgs/icon.png">
+					<div class="slider-container">
+		     		<input type= "range" min= "0" max= "100" value= "0" id= "boxSlider_1">
+		     		<span class= "slider-value" id= "boxSliderValue_1">Off</span>
+		  		</div>
+				</div>
+				<div class= "imageContainer">
+					<img class= "blurredImage" id= "boxBlurredImage_2" alt= "Box Blurred Image" src= "imgs/face1.png">
+					<div class="slider-container">
+		     		<input type= "range" min= "0" max= "100" value= "0" id= "boxSlider_2">
+		     		<span class= "slider-value" id= "boxSliderValue_2">Off</span>
+		  		</div>
+				</div>
+			</div>
 		</div>
-		<div class= oneHalf>
-			<div class= "category" id= "boxBlur">
+		<div class= "oneHalf">
+			<div class= "category">
 				<div class= "title">Gaussian Blur</div>
 				<div class= "text">
 					<p>
@@ -102,11 +118,6 @@
 			</div>
 		</div>
 	</div>
-	<img id= "boxBlurredImage" alt= "Box Blurred Image" src= "imgs/noise/noiseImg1.jpg">
-	<div class="slider-container">
-     <input type= "range" min= "0" max= "100" value= "0" id= "boxSlider">
-     <span class= "slider-value" id= "boxSliderValue">Off</span>
-  </div>
 	<script src= "script.js"></script>
 </body>
 </html>
