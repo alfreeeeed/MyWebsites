@@ -45,7 +45,8 @@ function applyBlur(imagePath, kernelSize, blurType, outputId) {
       // Set the source, the size and ID of the final image tag
       const blurredImage = document.createElement('img');
       const originalImage = document.getElementById(outputId);
-      blurredImage.src = blurredImageData;
+      if(kernelSize === 0) { blurredImage.src = imagePath; }
+      else { blurredImage.src = blurredImageData; }
       blurredImage.classList.add(originalImage.classList.value)
       blurredImage.id = outputId;
       console.log(blurredImage);
