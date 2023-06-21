@@ -59,6 +59,7 @@ function newshlv(uNummber){
             bttn.remove();
             count ++;
             bttnstate = false;
+            count = 0;
           }
         }
   //cobines the elements an creates the final element
