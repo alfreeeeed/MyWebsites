@@ -5,6 +5,7 @@ function test (){
 let blurredImageData; // Variable to store the blurred image data
 
 function applyBlur(imagePath, kernelSize, blurType, outputId) {
+  console.log(imagePath, kernelSize, blurType, outputId);
   fetch(imagePath)
     .then(response => response.blob())
     .then(blob => createImageBitmap(blob))
@@ -46,9 +47,8 @@ function applyBlur(imagePath, kernelSize, blurType, outputId) {
       const originalImage = document.getElementById(outputId);
       blurredImage.src = blurredImageData;
       blurredImage.classList.add(originalImage.classList.value)
-      console.log(blurredImage.classList);
       blurredImage.id = outputId;
-
+      console.log(blurredImage);
 
       // Append the blurred image to a container or replace an existing image
       const container = document.getElementById(outputId);
@@ -184,5 +184,17 @@ function setupSlider(sliderId, valueId, srcImg, outputId, blurType) {
   });
 }
 
-setupSlider("boxSlider_1", "boxSliderValue_1", "imgs/icon.png", "boxBlurredImage_1" , "box");
-setupSlider("boxSlider_2", "boxSliderValue_2", "imgs/face1.png", "boxBlurredImage_2" , "box");
+setupSlider("boxSlider_1", "boxSliderValue_1", "imgs/boxBlur/city1.png", "boxBlurredImage_1" , "box");
+setupSlider("boxSlider_2", "boxSliderValue_2", "imgs/boxBlur/face1.png", "boxBlurredImage_2" , "box");
+setupSlider("boxSlider_3", "boxSliderValue_3", "imgs/boxBlur/water1.jpg", "boxBlurredImage_3" , "box");
+setupSlider("boxSlider_4", "boxSliderValue_4", "imgs/boxBlur/water3.jpg", "boxBlurredImage_4" , "box");
+setupSlider("boxSlider_5", "boxSliderValue_5", "imgs/boxBlur/mountains1.png", "boxBlurredImage_5" , "box");
+setupSlider("boxSlider_6", "boxSliderValue_6", "imgs/boxBlur/mountains2.png", "boxBlurredImage_6" , "box");
+
+setupSlider("gaussianSlider_1", "gaussianSliderValue_1", "imgs/gaussianBlur/icon.png", "gaussianBlurredImage_1" , "gaussian");
+setupSlider("gaussianSlider_2", "gaussianSliderValue_2", "imgs/gaussianBlur/face2.png", "gaussianBlurredImage_2" , "gaussian");
+setupSlider("gaussianSlider_3", "gaussianSliderValue_3", "imgs/gaussianBlur/water2.jpg", "gaussianBlurredImage_3" , "gaussian");
+setupSlider("gaussianSlider_4", "gaussianSliderValue_4", "imgs/gaussianBlur/mountains3.jpg", "gaussianBlurredImage_4" , "gaussian");
+setupSlider("gaussianSlider_5", "gaussianSliderValue_5", "imgs/gaussianBlur/city2.png", "gaussianBlurredImage_5" , "gaussian");
+setupSlider("gaussianSlider_6", "gaussianSliderValue_6", "imgs/gaussianBlur/city3.png", "gaussianBlurredImage_6" , "gaussian");
+setupSlider("gaussianSlider_7", "gaussianSliderValue_7", "imgs/gaussianBlur/city4.jpg", "gaussianBlurredImage_7" , "gaussian");
